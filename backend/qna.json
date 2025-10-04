@@ -1,0 +1,14 @@
+{
+  "Canada": {
+    "healthcard": "To get a health card in Canada, visit a ServiceOntario or ServiceCanada office with ID and proof of residency.",
+    "driverslicense": "In Canada, book a knowledge test at your provincial testing center. After passing, you can schedule a road test."
+  },
+  "USA": {
+    "healthcard": "In the US, healthcare is private. You need health insurance, either through your employer or purchased individually.",
+    "driverslicense": "In the US, visit your state’s DMV with ID and proof of residence to take the written test."
+  },
+  "UK": {
+    "healthcard": "In the UK, register with a GP to access the NHS. You’ll receive an NHS number for healthcare services.",
+    "driverslicense": "In the UK, apply for a provisional license online, then book a theory and practical driving test."
+  }
+}
