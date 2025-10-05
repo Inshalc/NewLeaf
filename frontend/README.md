@@ -1,4 +1,4 @@
-# Welcome to your Expo app 👋
+# Welcome to NewLeaf app 🌿
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -106,4 +106,5 @@ We structured our code with modular components for onboarding, chatbox, checklis
 - Enhance **AI personalization** to provide guidance tailored to users’ backgrounds and goals  
 - Improve **mini-games and cultural content** to make learning immersive, interactive, and fun  
 
-> **Our vision:** NewLeaf becomes the first friend every immigrant meets.. a digital companion that helps them not just survive, but truly thrive!! Here is a link to our slide: https://www.canva.com/design/DAG03hTKlcI/9qe2gUHuzk-pH2kCCxGZMg/edit?utm_content=DAG03hTKlcI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+> **Our vision:**  Our vision is simple but powerful, NewLeaf becomes the first friend every Newcomers meets, helping them not just survive, but truly thrive, With NewLeaf, starting over doesn’t have to feel lonely or confusing, It empowers newcomers to feel confident, connected, and at home from day one, while also making sure It can feel like turning over a new leaf, full of hope, confidence, and belonging.
+>  Here is a link to our slide: https://www.canva.com/design/DAG03hTKlcI/9qe2gUHuzk-pH2kCCxGZMg/edit?utm_content=DAG03hTKlcI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
