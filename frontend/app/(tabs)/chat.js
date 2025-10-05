@@ -13,6 +13,7 @@ import {
 export default function Chatbot() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [isThinking, setIsThinking] = useState(false);
 
   const backendURL = 'http://192.168.2.97:3000';
 
@@ -30,14 +31,16 @@ export default function Chatbot() {
   const sendMessage = async () => {
     if (!message.trim()) return;
 
-    setMessages((prev) => [...prev, { text: message, sender: "user" }]);
+    const userMessage = message;
+    setMessages((prev) => [...prev, { text: userMessage, sender: "user" }]);
     setMessage("");
+    setIsThinking(true);
 
     try {
       const res = await fetch(`${backendURL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({ message: userMessage }),
       });
 
       const data = await res.json();
@@ -52,6 +55,8 @@ export default function Chatbot() {
         ...prev,
         { text: "⚠️ Error connecting to chatbot.", sender: "bot" },
       ]);
+    } finally {
+      setIsThinking(false);
     }
   };
 
@@ -71,25 +76,33 @@ export default function Chatbot() {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      {/* Header - Same as Upload Page */}
+      {/* Header */}
       <View style={styles.header}>
         <Text style={styles.leafLogo}>🌿</Text>
         <Text style={styles.title}>NewLeaf Chat</Text>
         <Text style={styles.subtitle}>Your AI companion for growth and transformation</Text>
       </View>
 
-      {/* Rest of your original chat code remains the same */}
+      {/* Chat Messages - Reduced height to make space for input */}
       <View style={styles.chatFrame}>
         <FlatList
           data={messages}
           renderItem={renderItem}
           keyExtractor={(_, index) => index.toString()}
           contentContainerStyle={{ paddingVertical: 10 }}
+          style={styles.flatList}
         />
+        {/* Thinking indicator */}
+        {isThinking && (
+          <View style={[styles.bubble, styles.botBubble, styles.thinkingBubble]}>
+            <Text style={styles.botText}>Thinking...</Text>
+          </View>
+        )}
       </View>
 
+      {/* Input Container - Moved much higher up */}
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Type a message..."
@@ -111,11 +124,11 @@ const styles = StyleSheet.create({
     flex: 1, 
     backgroundColor: "#f0f9f0" 
   },
-  // Header - Same as Upload Page
+  // Header
   header: {
     alignItems: 'center',
-    marginBottom: 30,
-    marginTop: 40,
+    marginBottom: 20,
+    marginTop: 60,
     paddingVertical: 20,
   },
   leafLogo: {
@@ -135,10 +148,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     lineHeight: 22,
   },
-  // Your original chat styles remain the same
+  // Chat Frame - Reduced height
   chatFrame: {
     flex: 1,
     margin: 15,
+    marginBottom: 180, // Reduced to make space for higher input
     backgroundColor: "white",
     borderRadius: 20,
     padding: 10,
@@ -146,7 +160,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 3,
-    marginBottom: 80,
+  },
+  flatList: {
+    flex: 1,
   },
   bubble: {
     padding: 12,
@@ -161,24 +177,40 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ddd",
   },
+  thinkingBubble: {
+    alignSelf: "flex-start",
+    backgroundColor: "#e8f5e9",
+    borderColor: "#4CAF50",
+  },
   userText: { color: "white", fontSize: 16 },
   botText: { color: "#333", fontSize: 16 },
+  // Input Container - Moved much higher up (closer to middle of screen)
   inputContainer: {
     flexDirection: "row",
-    padding: 10,
+    padding: 15,
     backgroundColor: "#fff",
     borderTopWidth: 1,
     borderColor: "#eee",
     position: "absolute",
-    bottom: 0,
+    bottom: 90, // Moved up from bottom
     left: 0,
     right: 0,
+    marginHorizontal: 20,
+    borderRadius: 25,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   input: {
     flex: 1,
     borderWidth: 1,
     borderColor: "#ddd",
-    borderRadius: 25,
+    borderRadius: 20,
     paddingHorizontal: 15,
     fontSize: 16,
     backgroundColor: "#fdfdfd",
@@ -186,11 +218,11 @@ const styles = StyleSheet.create({
   sendButton: {
     marginLeft: 8,
     backgroundColor: "#4CAF50",
-    borderRadius: 25,
-    width: 50,
-    height: 50,
+    borderRadius: 20,
+    width: 40,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
   },
-  sendText: { color: "white", fontSize: 18, fontWeight: "bold" },
+  sendText: { color: "white", fontSize: 16, fontWeight: "bold" },
 });

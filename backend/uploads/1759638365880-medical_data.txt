@@ -1,0 +1,11 @@
+Patient Vital Signs:
+Temperature: 98.6°F
+Weight: 150 lb
+Height: 68 inches
+
+
+Lab Results:
+Glucose: 95 mg/dL
+Cholesterol: 185 mg/dL
+Creatinine: 1.0 mg/dL
+Hemoglobin: 14.5 g/dL
