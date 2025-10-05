@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { 
-  View, 
-  Text, 
-  TouchableOpacity, 
-  StyleSheet, 
-  Platform, 
-  Alert, 
-  ScrollView,
-  ActivityIndicator 
-} from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from 'expo-file-system';
+import { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Alert,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 
 // 🔹 Use your correct IP address
 const getBaseUrl = () => {
@@ -21,7 +21,7 @@ const getBaseUrl = () => {
   }
 };
 
-const BASE_URL = getBaseUrl();
+const BASE_URL = 'http://192.168.2.97:3000';
 
 export default function Upload() {
   const [file, setFile] = useState(null);

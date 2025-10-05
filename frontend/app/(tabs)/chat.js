@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
-  View,
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
+  View,
 } from "react-native";
 
 export default function Chatbot() {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  // Replace with your laptop's IP
-  const backendURL =
-    Platform.OS === "android"
-      ? "http://10.0.2.2:3000" // Android Emulator
-      : "http://localhost:3000"; // iOS Simulator
-    
+  const backendURL = 'http://192.168.2.97:3000';
+
   useEffect(() => {
     setMessages([
       { text: "👋 Welcome to the NewLeaf Chatbot!", sender: "bot" },

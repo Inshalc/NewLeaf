@@ -1,33 +1,53 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Platform, Text } from 'react-native';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarStyle: Platform.select({
+          ios: {
+            position: 'absolute',
+          },
+          default: {},
+        }),
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>𖠿</Text>,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="upload"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Upload',
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>📂</Text>,
+        }}
+      />
+      <Tabs.Screen
+        name="games"
+        options={{
+          title: 'Games',
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>🎬</Text>,
+        }}
+      />
+      <Tabs.Screen
+        name="community"
+        options={{
+          title: 'Community',
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>🪷</Text>,
+        }}
+      />
+      <Tabs.Screen
+        name="chatbot"
+        options={{
+          title: 'Chat',
+          tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 18 }}>꩜</Text>,
         }}
       />
     </Tabs>

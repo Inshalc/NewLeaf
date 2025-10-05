@@ -1,0 +1,5 @@
+Mathematics, 4, A
+Physics, 3, B+
+Chemistry, 3, 88%
+Biology, 4, B-
+English, 3, A-
